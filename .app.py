@@ -1,6 +1,8 @@
 import streamlit as st
-from fuzzywuzzy import fuzz
+from rapidfuzz import fuzz
 from datetime import datetime
+from fuzzywuzzy import fuzz
+
 
 # Danger signs dictionary with synonyms
 danger_signs = {
@@ -12,7 +14,7 @@ danger_signs = {
     "hypothermia": {
         "advice": "Low body temperature can be dangerous. Keep the baby warm and visit a clinic urgently.",
         "urgency": "urgent",
-        "keywords": ["cold body", "low temperature", "hypothermia", "shivering"]
+        "keywords": ["cold body", "low temperature", "hypothermia", "shivering", "cold hands", "cold legs"]
     },
     "difficulty breathing": {
         "advice": "Breathing problems require immediate attention. Please go to a hospital now.",
@@ -48,8 +50,14 @@ danger_signs = {
         "advice": "If your baby's skin or eyes look yellow, seek medical advice immediately.",
         "urgency": "warning",
         "keywords": ["jaundice", "yellow skin", "yellow eyes"]
-    }
+    },
+    "Cyanosis": {
+        "advice": "Cyanosis is a medical emergency. Seek urgent care. it can be a sign of inadequate oxygenation caused by respiratory or cardiac issues.",
+        "urgency": "urgent",
+        "keywords": ["blue lips", "dark lips", "pale hands", "pale feet"]
+        }
 }
+
 
 st.set_page_config(page_title="Newborn Danger Sign Checker", page_icon="🍼")
 
@@ -96,3 +104,4 @@ if st.button("Check Danger Signs"):
 
 # Disclaimer
 st.caption("⚠️ This tool is for informational purposes only and is not a substitute for professional medical advice.")
+
